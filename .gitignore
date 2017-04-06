@@ -1,0 +1,8 @@
+*.toc
+*.aux
+*.tex~
+*.tex#
+*.log
+_region_.*
+backup/*
+auto/*
