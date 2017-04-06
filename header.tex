@@ -1,0 +1,96 @@
+\documentclass[12pt, twoside]{book}
+
+% Language settings
+\usepackage[catalan]{babel}
+
+% Page settings
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+
+% Headers and 
+\usepackage{fancyhdr}
+
+% Picture captions
+\usepackage[font=small,labelfont=bf]{caption}
+
+% No sé què fa açò, averiguar
+\usepackage{microtype}
+
+% Encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Mathematical notation
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+% Not sure
+\usepackage{txfonts}
+
+% Graphics
+\usepackage{graphicx}
+\graphicspath{{../images/}}
+
+% Better references
+\usepackage{cleveref}% load last
+\crefname{equation}{}{}
+\Crefname{equation}{}{}
+\crefname{figure}{}{}
+\Crefname{figure}{}{}
+\newcommand{\crefrangeconjunction}{-}
+\newcommand{\crefpairconjunction}{-}
+\newcommand{\crefmiddleconjunction}{-}
+\newcommand{\creflastconjunction}{-}
+
+% Settings
+\pagestyle{plain}
+
+% Customized commands
+
+% Positioning
+\newcommand*{\sub}[1]{_{\text{\tiny #1}}}
+\newcommand*{\abs}[1]{\left\rvert #1 \right\lvert}
+\newcommand*{\pd}[3][]{\frac{\partial ^{#1} #2}{\partial #3 ^{#1}}}
+
+\newcommand*{\rfun}{( \vec r)}
+\newcommand*{\rtfun}{(\vec r, t)}
+
+% Symbols 
+\newcommand*{\Zahl}{\mathbb Z} % Integers 
+\newcommand*{\Nat}{\mathbb N} % Naturals
+\newcommand*{\Real}{\mathbb R} % Reals
+\newcommand*{\Comp}{\mathbb C} % Complex
+
+\renewcommand*{\Re}{\operatorname {Re}}
+\renewcommand*{\Im}{\operatorname {Im}}
+
+\newcommand*{\e}[1]{\operatorname{e}^{#1}} % actualitzar en caps 1 i 2
+\newcommand*{\del}{\vec \nabla}
+\newcommand*{\curl}{\del \times} 
+
+  % Doc specific
+\renewcommand*{\l}{\ell}
+
+\newcommand*{\ux}{\hat u_x}
+\newcommand*{\uy}{\hat u_y}
+\newcommand*{\uz}{\hat u_z}
+\newcommand*{\us}{\hat u_s}
+\newcommand*{\uf}{\hat u_{\varphi}}
+
+\newcommand*{\vp}{V_0 ^+}
+\newcommand*{\vm}{V_0 ^-}
+\newcommand*{\ip}{I_0 ^+}
+\newcommand*{\im}{I_0 ^-}
+
+\newcommand*{\Bf}{\mathcal J}
+\newcommand*{\Bs}{\mathcal N}
+
+\newcommand*{\rfield}[1]{\vec{\mathcal{#1}}}
+
+\title{
+{Ones electromagnètiques}\\
+{Universitat de València}\\
+{Curs 2015-2016}\\
+\texttt{llacan@alumni.uv.es}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

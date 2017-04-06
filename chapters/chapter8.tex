@@ -1,0 +1,156 @@
+\chapter{Teoria de circuits d' alta freqüència}
+
+\section{Introducció}
+
+Un dispositiu en un circuit d' alta freqüència es representa com una caixa negra amb diversos ports (o canals) d' entrada i eixida. Cada un d' aquests ports és una guia d' ones representada com a dos terminals als que existeix una tensió i una corrent d' entrada i eixida. Ens interessa trobar les funcions de transferència d' aquests dispositius (les relacions entre cada entrada i cada eixida). Aquestes funcions poden calcular-se per dues vies diferents: teoria de circuits (trobant la matriu d' impedàncies o d' admitàncies) o per teoria d' ones (trobant la matriu de dispersió o scattering).
+
+\section{V i I en una guia d' ona}
+
+Intentem obtindre el V i I d' una guia d' ones a partir dels seus camps $\rfield{E}$ i $\rfield{H}$.  Denotem els camps d' entrada i eixida amb + i - i definim $\vp$ i $\ip$:
+\begin{align}
+  \rfield{E}_t ^+ = E_0 ^+ \vec e_t (x, y) e^{j(\omega t - \beta z)} = \frac{\vp}{c_1} \vec e_t(x, y) e^{j(\omega t - \beta z)} \\
+  \rfield{H}_t ^+ = E_0 ^+ \vec e_t (x, y) e^{j(\omega t - \beta z)} = \frac{\ip}{c_2} \vec h_t(x, y) e^{j(\omega t - \beta z)} 
+\end{align}
+
+Ara hem de trobar $c_1$ i $c_2$. Comencem igualant les expressions de la potència de la guia segons la teoria d' ones i segons la teoria de circuits.
+
+\begin{align}
+  P_{ones} &= \frac{1}{2} \int  ( \rfield{E} \times \rfield{H} ^* ) \uz dS = \frac{1}{2} \frac{\vp \ip}{c_1 c_2 ^*} \int ( \vec e_t \times \vec h_t ) \uz dS  \\
+  P_{circuits} &= \frac{1}{2} \vp \ip 
+\end{align}
+
+Si han de ser iguals ha de complir-se que
+\begin{equation}
+  c_1 c_2 ^* = \int ( \vec e_t \times \vec h_t ) \uz dS
+\end{equation}
+
+el que ens dona una primera relació entre $c_1$ i $c_2$. La segona relació no sempre existeix. Si el mode és TE, TM o TEM les amplituds dels càlculs estan relacionats per l' admitància o l' impedància: $E_0 ^+ = H_0 ^+ Z$, d' on obtenim
+\begin{equation}
+  \frac{\vp}{\ip} \frac{c_2}{c_1} = z
+\end{equation}
+
+Si el mode és TEM aleshores $\frac{\vp}{\ip} = z_c$ i $z = z_c \frac{c_2}{c_1}$. El mateix anàlisi pot usar-se per a calcular $\vm$ i $\im$.
+
+\section{Matrius d' impedància Z i d' admitància Y}
+
+Suposem un dispositiu amb n entrades, indexades per $j$. En la porta $j$ tindrem
+\begin{align}
+  V_j &= \vp  + \vm \\
+  I_j &= \ip + \im
+\end{align}
+
+Si posem una corrent en una o varies portes apareixerà una tensió an algunes de les altres. Definim la matriu d' impedància $Z_{ij}$ tal que
+\begin{equation}
+  V_i = \sum_{i = 0} ^N Z_{ij} V_j
+\end{equation}
+
+La matriu d' admitàncies es defineix anàlogament
+\begin{equation}
+  Y_j = \sum _{j=1}^N Y_{ij} Y_j
+\end{equation}
+%
+Quina informació ens proporcionen els elements d' aquestes matrius? Ens donen la relació entre tensió a la porta $i$ i corrent a la porta $j$ quan totes les altres estan en circuit obert:
+\begin{align}
+  Z_{ij} = \left . \frac{V_i}{I_j} \right \vert \sub{$I_k = 0$ per a $k \neq j$}
+\end{align}
+o entre corrent a la porta $i$ i tensió a la porta $j$ quan totes les altres estan curtcircuitades:
+\begin{equation}
+  Y_{ij} = \left . \frac{I_i}{V_j} \right \vert \sub{$V_k = 0$ per a $k \neq j$}
+\end{equation}
+
+\section{Matriu d' scattering S}
+
+Alternativament podem definir els paràmetres de potència incident i reflectida:
+\begin{equation}
+  a_i = \frac{\vp}{\sqrt{Z_{Ci}}} \qquad b_i = \frac{\vm}{\sqrt{Z_{Ci}}}
+\end{equation}
+anomenats així perquè, a partir de la seua definició, podem arribar a la igualtat
+\begin{equation}
+  P_i = \frac{1}{2} \Re \left [ \left \vert a_i \right \vert ^2 - \left \vert b_i \right \vert ^2 \right ]
+\end{equation}
+
+que podem interpretar com a la potència entrant al port $i$ menys la potència eixint del port $i$. A partir d' aquests coeficients podem definir els  paràmetres S:
+\begin{equation}
+  S_{ij} = \left . \frac{b_i}{a_j} \right \vert \sub{$a_k = 0$ per a $k \neq j$}
+\end{equation}
+
+tals que
+  
+\begin{equation}
+  b_i = \sum_j S_{ij} a_j
+\end{equation}
+
+La informació continguda en aquest paràmetres és els paràmetres de reflexió (quan $i = j$) i els de transmissió (quan $i \neq j$):
+\begin{align}
+  S_{ii} = \frac{V_i ^-}{V_i^+} \\
+  S_{ij} =  \sqrt{\frac{Z_{Cj}}{Z_{Ci}}}  \frac{V_i ^-}{V_j ^+}
+\end{align}
+
+Podem mesurar els paràmetres $S$ d' una xarxa amb dues portes usant un analitzador de xarxes vectorial (VNA). Per a dispositius més complixats d'$n$ portes utilitzem el VNA i analitzem les portes per parells. Noteu que, segons la definició, quan mesurem el paràmetre $S_{ij}$ haurem d' assegurar-nos de que totes les portes que no siguen $j$ estiguen adaptades, per a que no hi haja reflexions.
+
+\section{Propietats de les matrius}
+
+En sistemes recíprocs (passius, no aporten energia) $Z$ i $Y$ son simétriques. Si no hi ha pèrdues són, a més, imaginàries pures.
+
+Depenent del problema una matriu serà més ñutil que l' altra, pel que és útil saber obtindre'n una de l' altra. De la definició dels paràmetres $a_i$ i $b_i$ obtenim
+\begin{align}
+  a_i + b_i &= \frac{V_i ^+ + V_i ^-}{\sqrt{Z_{ci}}} = \frac{V_i}{\sqrt{Z_{ci}}} \\
+  a_i - b_i &= \frac{V_i ^+ - V_i ^-}{\sqrt{Z_{ci}}} = \sqrt{Z_{ci}} I_i
+\end{align}
+
+Sumant i restant aquestes dos equacions:
+\begin{align}
+  a_i = \frac{1}{2} \left ( \frac{V_i}{\sqrt{Z_{ci}}} + \sqrt{Z_{ci}} I_i \right ) = \frac{1}{2} \left ( \frac{1}{\sqrt{Z_{ci}}} \sum_j Z_{ij} I_j + \sqrt{Z_{ii}} I_i \right )  \\
+  b_i = \frac{1}{2} \left ( \frac{V_i}{\sqrt{Z_{ci}}} - \sqrt{Z_{ci}} I_i \right ) = \frac{1}{2} \left ( \frac{1}{\sqrt{Z_{ci}}} \sum_j Z_{ij} I_j + \sqrt{Z_{ii}} I_i \right  )
+\end{align}
+
+Definint les matrius
+\begin{align}
+  Z_{ij} ^{D+} = \frac{Z_{ij}}{\sqrt{Z_{ci}}} + \delta _{ij} \sqrt{Z_{ci}} \\
+  Z_{ij} ^{D-} = \frac{Z_{ij}}{\sqrt{Z_{ci}}} - \delta _{ij} \sqrt{Z_{ci}}
+\end{align}
+podem expressar els coeficients com a
+\begin{align}
+  a_i = \sum_j Z_{ij}^{D+} I_j \\
+  b_i = \sum_j Z_{ij}^{D-} I_j
+\end{align}
+o, en termes dels vectors que contenen els coeficients i les corrents de cada porta $\vec a = Z^{D+} \vec I$ i $\vec b = Z^{D-} \vec I$.
+Ara podem, de la definició de $S$
+\begin{equation}
+  \vec b = S \vec a
+\end{equation}
+
+obtindre la relació d' aquesta amb $Z$:
+\begin{equation}
+  S = Z^{D-} \left [ Z^{D+} \right ] ^{-1}
+\end{equation}
+
+Les propietats de $Z$ es translladen a $S$: en sistemes recíprocs $S$ és simètrica, i per tant ens podem estalviar la meitat de les mesures. Noteu que per a un sistema biporta
+\begin{align}
+  \abs {S_{11}} ^2 +  \abs {S_{22}} ^2 = 1 \\
+  \abs {S_{21}} ^2 +  \abs {S_{12}} ^2 = 1 
+\end{align}
+
+\section{Conexions de xarxes en cascada}
+
+Els elements de les matrius d' scattering i d' impedància tenen significat físic i són per tant directament mesurables, però tenen l' inconvenient de que no són multiplicatives. És a dir, la matriu $S$ d' una xaxa composada per dos xarxes amb matrius $S_1$ i $S_2$ no és $S_1 S_2$. És per això que definim la matriu T
+\begin{equation}
+  \left [ \begin{array}{c} b_2 \\ a_2 \end{array}  \right ] = T \left [ \begin{array}{c} a_1 \\ b_1 \end{array} \right ]
+\end{equation}
+que si que satisfá aquesta propietat. Les expressions per a passar de la matriu S a la T i viceversa són
+\begin{equation}
+  T = \left [
+    \begin{array}{cc}
+      \frac{\operatorname{det}(S)}{S_{12}} & \frac{S_{22}}{S_{12}} \\ [1.5ex] 
+      - \frac{S_{11}}{S_{12}} & \frac{1}{S_{12}}
+    \end{array}
+    \right ]
+    \qquad
+    S = \left [
+    \begin{array}{cc}
+      - \frac{T_{21}}{T_{22}} & \frac{1}{T_{22}} \\ [1.5ex] 
+        \frac{\operatorname{det}(T)}{T_{22}} & \frac{T_{12}}{T_{22}}
+    \end{array}
+    \right ]
+\end{equation}
+

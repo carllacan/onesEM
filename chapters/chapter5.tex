@@ -1,0 +1,117 @@
+\chapter{Guies superficials}
+
+\section{Introducció}
+
+En algunes situacions els camps electromagnètics estan "confinats" a una superfície; poden propagar-se en el pla d' aquesta, però s' atenuen exponencialment en la direcció ortogonal. Aquesta superfície sol ser la interfase entre dos dielèctrics, com en les guies integrades o les fibres òptiques.
+
+\section{Làmina dielèctrica sobre plans de terra}
+
+A la imatge \ref{slab} es mostra la geometria d' una làmina dielèctrica sobre un pla de terra (\textit{grounded slab}) i el sistema de coordenades utilitzat. Suposem que el dielèctric s' estén en $\inf < x < \inf$ i en $0 < z < \inf$, el que implica que els camps no tindran variació en la direcció $x$.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=.6]{slabgeom}
+  \caption{Làmina dielèctrica sobre terra}
+  \label{slab}
+\end{figure}
+
+\subsection{Modes TM}
+
+Comencem, com sempre, per resoldre la equació de Helmholtz per a $e_z$:
+
+\begin{equation}
+  \del _t \vec e_z + (k^2 - \beta ^2) \vec e_z = 0
+\end{equation}
+amb la particularitat de que $k^2 = \omega^2 \mu_0\epsilon _0$ en aire i $k^2 = \omega^2 \mu_0 \epsilon _0 \epsilon _r$ en el substrat, pel que tindrem dues regions separades, amb solucions diferents. Anomenant $k_c ^2 = k_0 ^2 \epsilon _r - \beta^2$ i $-h^2=k_0^2 - \beta^2$ tenim dues equacions diferencials
+
+\begin{subequations}
+  \begin{align}
+    \pd[2]{e_z}{y} + k^2 _c e_z &= 0 \\
+    \pd[2]{e_z}{y} - h^2 _c e_z &= 0
+  \end{align}
+\end{subequations}
+
+Amb solucions
+
+\begin{subequations}
+  \begin{align}
+    e_z &= A \cos(k_cy) + B \sin (k_c y) \quad \text{per a } y < d \label{yltd} \\
+    e_z &= C \e{-hy} + D \e{hy} \quad \text{per a} y > d \label{ygtd}
+  \end{align}
+\end{subequations}
+
+Per a que les condicions de contorn en la interfície aire - guia es satisfacin cal que les velocitats de fase siguen iguals, pel que la $\beta$ serà igual a les dues regions, i de $\beta^2 = k_0^2 \epsilon _r - k_c ^2 = k_o^2 - h^2$ obtenim 
+
+\begin{equation}
+  k_c^2 + h^2 = k_0 ^2 (\epsilon _r - 1)
+  \label{final1}
+\end{equation}
+
+Usem les condicions de contorn
+
+\begin{enumerate}
+  \item{ $e_z < \infty$ quan $y \to \infty$, pel que $D$ ha de ser $0$ en \cref{ygtd}}
+  \item{$e_z = 0$ quan $y=0$, d' on traguem $A = 0$ en \cref{yltd}.}
+  \item{$e_z$ ha de ser continuu en $y=d$, donant lloc a la lligadura entre C i B
+  \begin{equation}
+    C \e{-hd}=B\sin(k_c d) \label{contin1}
+  \end{equation}}
+  \item{$\vec h_x$ ha der ser continuu en $y=d$. Com que $h_x = \frac{1}{\beta^2 - k^2}\pd{e_z}{y}$ tenim que
+  \begin{equation}
+   \left. \frac{-1}{h ^2} \pd{e_x}{y} \right \vert _{y = d^+} = \left . \frac{\epsilon _r}{k_c ^2} \pd{e_x}{y} \right \vert _{y = d^-}
+  \end{equation}
+  i, per tant,
+  \begin{equation}
+    \frac{1}{h} C e^{-hd} = \frac{\epsilon _r}{k_c ^2} B k_c \cos (k_c y) \label{contin2}
+  \end{equation}
+  }
+\end{enumerate}
+
+Les equacions \cref{contin1,contin2} formen un sistema d' equacions per a B i D. Per a que existisquen solucions el determinant ha d' anular-se:
+
+\begin{equation}
+  k_c \tan (k_c d) = h \epsilon_r
+  \label{final2}
+\end{equation}
+
+Ara podem obtindre solucions per a $k_c$ i $h$ a partir de solucions numèriques per a les equacions \cref{final1,final2}. Si multipliquem ambdues per $d$ obtenim dues equacions 
+
+\begin{subequations}
+  \begin{align}
+    (k_c d) \tan (k_c d) = (h d ) \epsilon _r \\
+    (hd)^2 + (k_c d ) ^2 = (k_c d) ^2 ( \epsilon _r - 1 )
+  \end{align}
+\end{subequations}
+
+que podem representar en el pla $hd$, $k_c$ (figura \cref{slabsolutions}). Notem que la segona de les equacions és un cercle de radi $k_0 d \sqrt{\epsilon - 1} = \omega d \sqrt{\mu \epsilon}\sqrt{\epsilon - 1}  $, i a major freqüència més interseccions tindrà amb les branques de la primera equació, el que significa que existiran més modes a la làmina. 
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.7]{slabsolutions}
+  \caption{Sol·lucions gràfiques per a $k_c$ i $h$}
+  \label{slabsolutions}
+\end{figure}
+
+Notem que el mode $TM_0$ no té freqüència de tall: és propaga desde $\omega= 0$ fins a $\omega = \infty$, encara que en $\omega = 0$ els camps desapareixen, el que resol la paradoxa que tindríem si tinguérem DC ($\omega = 0$) propagant-se amb un sol conductor.
+
+Si la freqüència és molt gran les $h$ també ho seran, i el camp en $z$ s' atenuarà en una longitud $\sim \lambda$, pel que el camp estarà contingut al dielèctric \footnote{En una làmina amb més dielèctrics el camp es quedaria contingut al de major $\epsilon_r$}.
+
+Els components restants es calculen mecànicament una vegada coneixem el valor de $h$ i $k_c$:
+
+\begin{align}
+  e_z &=  \begin{cases}
+    B \sin (k_c y) & \text{quan }  y < d \\
+    B \sin (k_c d) e^{-h(y - d)} & \text{quan } y > d
+   \end{cases}\\
+   \nonumber \\
+  \vec e_t &= \begin{cases}
+    \frac{\jmath \beta}{k_c} B \cos (k_c d)  \uy  & \text{quan }  y < d \\
+    \frac{\jmath \beta}{h} B \sin (k_c d) e^{-h (y - d)} \uy & \text{quan } y > d
+  \end{cases} \\
+   \nonumber \\
+  \vec h_t &= \begin{cases}
+    \frac{\jmath \omega \epsilon_0 \epsilon_r}{k_c} B \cos (k_c y)  \uy & \text{quan } y < d \\
+    \frac{\jmath \omega \epsilon_0}{h} B \sin (k_c d) e^{-h (y - d)} \ux & \text{quan } y > d 
+  \end{cases}  \\
+   \nonumber 
+\end{align} 
